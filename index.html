@@ -1,12 +1,71 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>朱保龙的日志</title>
+	<title>暴龙的城市</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		html,body{
+			margin: 0;
+			height: 100%;
+		}
+	div{
+		float: 	right;	
+		width: 20%;
+		height: 100%;
+		/*background:red;*/
+		border-left: 0.1px solid #E8E8E8;
+	}
+	p{
+		text-align: center;
+	}
+	</style>
 </head>
 <body>
-	<h2>Hello Word!</h2>
-	<hr>
-	<a href="./html/hello.html">保龙笔记</a>
-	<a href="./html/canvas01.html">暴龙的星空</a>
+	<div id="right">
+		<p class="dizhi"></p>
+	</div>
+	<script type="text/javascript" src="./js/jquery-3.3.1.js"></script>
+	<script type="text/javascript">
+	
+		$(function() {
+			var dizhi= $('.dizhi');
+			console.log(dizhi);
+			getlocation();
+			function getlocation() {
+				var o={
+					'location':'兴宁'
+				};
+				$.ajax({
+					type:'get',
+					url:'http://api.map.baidu.com/location/ip?ak=KQvhEkxc6mFCAYHTblC3NGVmxzxIWk0E&coor=bd09llak=TueGDhCvwI6fOrQnLM0qmXxY9N0OkOiQ',
+					dataType:'jsonp',
+					success:function(data) {
+						o.location=data.content.address_detail.city;
+						console.log(o.location);
+						console.log(o);
+						var str='';
+						str='当前城市：'+o.location;
+						console.log('str:'+str);
+						dizhi[0].innerHTML=str;
+
+					}
+				})
+			}
+
+
+		
+
+
+
+
+
+
+		})
+
+
+
+
+
+	</script>
 </body>
 </html>
